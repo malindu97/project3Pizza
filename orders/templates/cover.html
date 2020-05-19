@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'styles.css' %}" rel="stylesheet" type="text/css">
+    <title>Welcome Pizza Store</title>
+</head>
+<body>
+<img id='pizza_background' src="{% static 'pizza_background.jpg' %}">
+<div class="cover">
+    Welcome to the Pizza Store
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<div class='w-75  mx-auto ' id='cover_box'>
+    <p id="intro">Noch's has been in business for over 50 years!
+        We've been feeding Harvard and the surrounding area since 1966!
+        We sell award-winning sicilian-style pizza and mouth-watering steak subs!
+        We have over 750 reviews on Yelp--- check it out!</p>
+    <a href="{% url 'index' %}">
+        <button class="btn btn-info" type="button">Visit more..</button>
+    </a>
+    <a href="{% url 'signin' %}">
+        <button class="btn btn-success" type="button">Signup</button>
+    </a>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
