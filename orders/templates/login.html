@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
+<!-- show messages to user -->
 <div class=' mx-auto w-50 p-3'>
     {% if message %}
     <div class='text-center'>
         {{message}}
     </div>
     {% endif %}
+    <!-- login input -->
     <form class='m-5' action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <div class="form-group">

@@ -11,6 +11,7 @@ counter = Order_counter.objects.first()
 if counter==None:
     set_counter=Order_counter(counter=1)
     set_counter.save()
+# create superuser in startup
 superuser = User.objects.filter(is_superuser=True)
 if superuser.count() == 0:
     superuser=User.objects.create_user("admin","admin@admin.com","adminadmin")
@@ -20,10 +21,11 @@ if superuser.count() == 0:
     set_superuser=User_order(user=superuser,order_number=counter.counter)
     set_superuser.save()
 
-
+# open page function
 def cover(request):
     return render(request, "cover.html")
 
+# index page function
 def index(request):
     if not request.user.is_authenticated:
         return render(request,"login.html",{"message":None})
@@ -39,6 +41,7 @@ def index(request):
     }
     return render(request,"index.html",context)
 
+# login view function
 def login_view(request):
     username=request.POST["username"]
     password=request.POST["password"]
@@ -49,10 +52,12 @@ def login_view(request):
     else:
         return render(request,"login.html",{"message":"Invalid credentials"})
 
+# logout function
 def logout_view(request):
     logout(request)
     return render(request,"login.html",{"message":"Logged out."})
 
+# register a new user function
 def signin_view(request):
     if request.method == "POST":
         first_name=request.POST["first_name"]
@@ -77,6 +82,7 @@ def signin_view(request):
         return render(request,"login.html",{"message":"Registered. You can log in now."})
     return render(request,"signin.html")
 
+# show menu function
 def menu(request,category):
     menu,columns=findTable(category)
     order_number=User_order.objects.get(user=request.user,status='initiated').order_number
@@ -94,6 +100,7 @@ def menu(request,category):
     }
     return render(request,"menu.html",context)
 
+# add item to the order function
 def add(request,category,name,price):
     menu,columns=findTable(category)
     order_number=User_order.objects.get(user=request.user,status='initiated').order_number
@@ -110,6 +117,7 @@ def add(request,category,name,price):
         "Topping_price": 0.00,
         "Order_number":order_number
     }
+    # mange topping counts
     if (category == 'Regular Pizza' or category == 'Sicilian Pizza'):
         if name =="1 topping":
             topping_allowance.topping_allowance+=1
@@ -142,6 +150,7 @@ def add(request,category,name,price):
     }
     return render(request,"menu.html",context2)
 
+# remove items from the order
 def delete(request,category,name,price):
     menu,columns=findTable(category)
     order_number=User_order.objects.get(user=request.user,status='initiated').order_number
@@ -181,6 +190,7 @@ def delete(request,category,name,price):
     }
     return render(request,"menu.html",context)
 
+# show current user orders
 def my_orders(request,order_number):
     context = {
         "Checkout":Order2.objects.filter(user=request.user,number=order_number),
@@ -194,7 +204,7 @@ def my_orders(request,order_number):
     }
     return render(request,"my_orders.html",context)
 
-
+# manage oredrs for superuser
 def orders_manager(request,user,order_number):
     user=User.objects.get(username=user)
     context = {
@@ -225,6 +235,7 @@ def complete_order(request,user,order_number):
     }
     return render(request,"orders_manager.html",context)
 
+# update status in order
 def confirmed(request,order_number):
     status=User_order.objects.get(user=request.user,status='initiated')
     status.status='pending'
@@ -237,8 +248,8 @@ def confirmed(request,order_number):
     counter.save()
 
     return my_orders(request,order_number)
-    #return render(request,"my_orders.html",context)
 
+# list all items in front view
 def findTable(category):
     if category == "Regular Pizza":
         menu=Regular_pizza.objects.all()

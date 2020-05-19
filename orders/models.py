@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 # Create your models here.
-
+# all database models for the application
 class Category(models.Model):
     name = models.CharField(max_length=64)
 

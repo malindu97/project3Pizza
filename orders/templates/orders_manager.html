@@ -12,7 +12,9 @@
     <title>Pizza Store</title>
 </head>
 <body style="height:100%">
+<!-- background image -->
 <img id='pizza_background' src="{% static 'pizza_background.jpg' %}">
+<!-- navigation bar -->
 {% if Category %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'index' %}">Pizza Store</a>
@@ -50,7 +52,7 @@
 <br>
 <br>
 <br>
-
+<!-- show all orders to the superuser -->
 <div id='my_orders_container' class='w-50 mx-auto'>
     <div class=' text-left pr-3'>
         <ul>
